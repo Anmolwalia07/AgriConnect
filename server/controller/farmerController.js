@@ -58,7 +58,9 @@ export async function getAllFarmers(req, res) {
 
 export async function getIndividualFarmer(req, res) {
     try {
+
         const _id = req.params.id;
+        console.log(_id)
         const farmer = await FarmerModel.findOne({ _id });
         if (!farmer) {
             return res.status(400).json({ message: "farmer not found" })

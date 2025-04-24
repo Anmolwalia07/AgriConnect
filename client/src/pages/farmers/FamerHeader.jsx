@@ -38,7 +38,7 @@ const FarmerHeader = () => {
               Dashboard
             </NavLink>
             <NavLink 
-              to="/farmer/products" 
+              to="/farmer/my-products" 
               className={({ isActive }) => 
                 `hover:text-green-600 ${isActive ? 'text-green-700 font-semibold' : ''}`
               }
@@ -104,7 +104,7 @@ const FarmerHeader = () => {
               Dashboard
             </NavLink>
             <NavLink 
-              to="/farmer/products" 
+              to="/farmer/my-products" 
               className="text-lg"
               onClick={() => setIsMenuOpen(false)}
             >

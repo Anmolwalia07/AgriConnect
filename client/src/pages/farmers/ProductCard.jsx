@@ -1,56 +1,57 @@
+import { useContext } from 'react';
 import { FaStar, FaShippingFast, FaInfoCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { userContext } from '../../Context/Context';
 
 const ProductCard = ({ product }) => {
+  const isBuyer=useContext(userContext).role==="buyer" ? 1 : 0; // Check if the user is a buyer or farmer
   return (
-    <div className="overflow-hidden transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg">
-      {/* Product Image */}
-      <div className="flex items-center justify-center h-48 bg-green-50">
+    <div className="overflow-hidden transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg h-full">
+      {/* Image Section with Responsive Height */}
+      <div className="flex items-center justify-center h-32 bg-green-50 md:h-40">
         <img 
           src={product.imageUrl || 'https://via.placeholder.com/300x200'} 
           alt={product.name}
-          className="object-contain w-full h-full p-4"
+          className="object-contain w-full h-full p-2 md:p-3"
         />
       </div>
 
-      {/* Product Details */}
-      <div className="p-4">
+      {/* Content Section */}
+      <div className="flex flex-col justify-between p-3 flex-1">
         {/* Title & Price */}
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-lg font-semibold">{product.name}</h3>
-          <span className="text-xl font-bold text-green-600">
+          <h3 className="text-sm font-semibold truncate md:text-base lg:text-lg">{product.name}</h3>
+          <span className="text-base font-bold text-green-600 md:text-lg lg:text-xl">
             ₹{product.price}/kg
           </span>
         </div>
 
-        {/* Farmer Info */}
-        <div className="flex items-center mb-3">
-          <FaStar className="mr-1 text-yellow-500" />
-          <span className="text-sm text-gray-600">1</span>
-          <span className="px-2 py-1 ml-2 text-xs text-green-700 bg-green-100 rounded">
+        {/* Rating & Certification */}
+        <div className="flex items-center mb-2 space-x-1">
+          <FaStar className="text-yellow-500 md:text-sm" />
+          <span className="text-xs text-gray-600 md:text-sm">1</span>
+          <span className="px-2 py-1 ml-1 text-[10px] md:text-xs text-green-700 bg-green-100 rounded">
             {product.certification || 'Organic'}
           </span>
         </div>
 
-        {/* Availability & Actions */}
-        <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-500">
+        {/* Stock & CTA */}
+        <div className="flex flex-col gap-2 mb-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-xs text-gray-500 md:text-sm">
             <FaShippingFast className="inline mr-1" /> 
             {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
           </div>
-          
           <button 
-            className="px-4 py-2 text-white transition bg-green-600 rounded-full hover:bg-green-700"
-            onClick={() => console.log('Add to cart:', product.name)}
+            className="px-3 py-1.5 text-xs text-white transition bg-green-600 rounded-full md:text-sm md:px-4 hover:bg-green-700"
           >
-            Add to Cart
+            {isBuyer > 0 ? 'Buy Now' : 'Update Stock'}
           </button>
         </div>
 
-        {/* View Details */}
+        {/* Details Link */}
         <Link 
           to={`/product/${product.id}`} 
-          className="flex items-center mt-3 text-green-600 hover:text-green-700"
+          className="flex items-center mt-1 text-xs text-green-600 md:text-sm hover:text-green-700"
         >
           <FaInfoCircle className="mr-1" /> 
           View Details

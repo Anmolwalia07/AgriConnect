@@ -103,7 +103,6 @@ const FarmerHome = () => {
 
       {/* Market Prices */}
       <Market/>
-
       <Footer/>
     </div>
   );

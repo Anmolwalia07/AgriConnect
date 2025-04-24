@@ -1,13 +1,15 @@
 import React from 'react'
+import Footer from './Footer';
 
 function Market() {
   const marketPrices = [
-    { crop: "Wheat", price: "₹2,150", unit: "per quintal" },
+    { crop: "Wheat", price: "₹2,050", unit: "per quintal" },
     { crop: "Rice", price: "₹3,200", unit: "per quintal" },
     { crop: "Tomato", price: "₹45", unit: "per kg" },
     { crop: "Potato", price: "₹25", unit: "per kg" },
   ];
   return (
+    <>
     <section className="py-16 bg-white" id="prices">
         <div className="container px-6 mx-auto">
           <h2 className="mb-8 text-3xl font-bold text-center">Live Market Prices</h2>
@@ -21,7 +23,10 @@ function Market() {
             ))}
           </div>
         </div>
+        
       </section>
+      <Footer/>
+      </>
   )
 }
 

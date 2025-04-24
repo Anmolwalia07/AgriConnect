@@ -9,11 +9,14 @@ import FarmerHome from './pages/farmers/FarmerHome'
 import BuyerProtectedWrapper from './ProtectedWrapper/BuyerProtectedWrapper'
 import FarmerProtectedWrapper from './ProtectedWrapper/FarmerProtectedWrapper'
 import AddProduct from './pages/farmers/AddProduct'
+import MyProducts from './pages/farmers/MyProducts'
+import UserProvider from './Context/Context'
 
 function App() {
   const queryClient=new QueryClient();
   return (
    <QueryClientProvider client={queryClient}>
+     <UserProvider>
      <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path='/features' element={<Feature/>}/>
@@ -21,7 +24,9 @@ function App() {
       <Route path="/buyer-home" element={<BuyerProtectedWrapper><BuyersHome/></BuyerProtectedWrapper>}/>
       <Route path="/farmer-home" element={<FarmerProtectedWrapper><FarmerHome/></FarmerProtectedWrapper>}/>
       <Route path='/farmer-home/addProduct' element={<FarmerProtectedWrapper><AddProduct/></FarmerProtectedWrapper>}/>
+      <Route path="/farmer/my-products" element={<FarmerProtectedWrapper><MyProducts/></FarmerProtectedWrapper>}/>
     </Routes>
+     </UserProvider>
    </QueryClientProvider>
   )
 }
